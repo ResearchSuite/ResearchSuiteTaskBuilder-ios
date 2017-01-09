@@ -1,0 +1,108 @@
+{
+  "identifier": "formSample",
+  "type": "form",
+  "title": "Form Title",
+  "text": "Form Text",
+  "items": [
+    {
+      "identifier": "gender",
+      "type": "singleChoiceText",
+      "text": "What is your gender?",
+      "items": [
+        {
+          "prompt": "Female",
+          "value": "female"
+        },
+        {
+          "prompt": "Male",
+          "value": "male"
+        },
+        {
+          "prompt": "Transgender",
+          "value": "transgender"
+        },
+        {
+          "prompt": "Other",
+          "value": "other"
+        }
+      ]
+    },
+    {
+      "identifier": "age",
+      "type": "numericInteger",
+      "text": "What is your age?",
+      "range": {
+        "min": 18,
+        "max": 99,
+        "unitLabel": "years"
+      }
+    },
+    {
+      "identifier": "zip_code",
+      "type": "textfield",
+      "text": "What is your zip code?",
+      "validationRegex": "^[0-9]{5}$",
+      "invalidMessage": "Please enter a valid zip code."
+    },
+    {
+      "identifier": "sampleFormSeparator",
+      "type": "sectionTitle",
+      "title": "This is a form section title"
+    },
+    {
+      "identifier": "religion",
+      "type": "multipleChoiceText",
+      "text": "Please specify your religious beliefs. Check all that apply.",
+      "items": [
+        {
+          "prompt": "Atheist",
+          "value": "Atheist"
+        },
+        {
+          "prompt": "Agnostic",
+          "value": "Agnostic"
+        },
+        {
+          "prompt": "Humanistic",
+          "value": "Humanistic"
+        },
+        {
+          "prompt": "Religious (no services)",
+          "value": "Religious (no services)"
+        },
+        {
+          "prompt": "Religious (holiday services)",
+          "value": "Religious (holiday services)"
+        },
+        {
+          "prompt": "Religious (weekly services)",
+          "value": "Religious (weekly services)"
+        },
+        {
+          "prompt": "Spiritual",
+          "value": "Spiritual"
+        },
+        {
+          "prompt": "Other",
+          "value": "Other"
+        },
+        {
+          "prompt": "Prefer not to disclose",
+          "value": "Prefer not to disclose"
+        }
+      ]
+    },
+    {
+      "identifier": "morning_notification_time_picker",
+      "type": "timePicker",
+      "text": "Please choose a window of time you would like to be reminded to take your morning surveys. Your alert will come anytime within one hour after the time you choose. "
+    },
+    {
+      "identifier": "notes",
+      "type": "textfield",
+      "text": "Please contact us to finalize your participant in the study. Upon hearing from you, we will schedule your payment and answer any questions.",
+      "optional": true,
+      "multipleLines": true
+    }
+  ]
+}

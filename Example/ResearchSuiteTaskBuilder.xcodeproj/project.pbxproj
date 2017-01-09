@@ -15,6 +15,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		6593AD42DCA088D449C90DA8 /* Pods_ResearchSuiteTaskBuilder_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B30028ECDCCFB7E7055F3A /* Pods_ResearchSuiteTaskBuilder_Example.framework */; };
+		E2966A2C1E24487B00457064 /* sample.json in Resources */ = {isa = PBXBuildFile; fileRef = E2966A2B1E24487B00457064 /* sample.json */; };
+		E2966A2E1E24488200457064 /* formSample.json in Resources */ = {isa = PBXBuildFile; fileRef = E2966A2D1E24488200457064 /* formSample.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,10 +45,12 @@
 		607FACE51AFB9204008FA782 /* ResearchSuiteTaskBuilder_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchSuiteTaskBuilder_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		7FCD10C0D253D8C8D52B7111 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		8B247B215794B92B9B6C9F30 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		7FCD10C0D253D8C8D52B7111 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		8B247B215794B92B9B6C9F30 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		B38FEE67439FCF957832D086 /* Pods-ResearchSuiteTaskBuilder_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ResearchSuiteTaskBuilder_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ResearchSuiteTaskBuilder_Tests/Pods-ResearchSuiteTaskBuilder_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C924CFF3222CB4389C3C1A30 /* ResearchSuiteTaskBuilder.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = ResearchSuiteTaskBuilder.podspec; path = ../ResearchSuiteTaskBuilder.podspec; sourceTree = "<group>"; };
+		C924CFF3222CB4389C3C1A30 /* ResearchSuiteTaskBuilder.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ResearchSuiteTaskBuilder.podspec; path = ../ResearchSuiteTaskBuilder.podspec; sourceTree = "<group>"; };
+		E2966A2B1E24487B00457064 /* sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
+		E2966A2D1E24488200457064 /* formSample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = formSample.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				E2966A2A1E24486200457064 /* Resources */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for ResearchSuiteTaskBuilder";
@@ -157,6 +162,15 @@
 				267CA6FFB332575B4BE1EE70 /* Pods_ResearchSuiteTaskBuilder_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2966A2A1E24486200457064 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E2966A2B1E24487B00457064 /* sample.json */,
+				E2966A2D1E24488200457064 /* formSample.json */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,9 +229,11 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -247,8 +263,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				E2966A2C1E24487B00457064 /* sample.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				E2966A2E1E24488200457064 /* formSample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +512,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -507,6 +526,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -526,6 +546,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -541,6 +562,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

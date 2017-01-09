@@ -1,0 +1,22 @@
+PODS:
+  - Gloss (1.1.1)
+  - ResearchKit (1.3.1)
+  - ResearchSuiteTaskBuilder (0.1.0):
+    - Gloss (~> 1.1)
+    - ResearchKit (= 1.3.1)
+
+DEPENDENCIES:
+  - ResearchSuiteTaskBuilder (from `../`)
+
+EXTERNAL SOURCES:
+  ResearchSuiteTaskBuilder:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Gloss: 4a892694cba7387efa4102a51f86110651366b18
+  ResearchKit: badba0340dd71d1cbab4789a0bf01b26022b8f94
+  ResearchSuiteTaskBuilder: 4d08cdb53162ad1cff6bc7e3b447575844b0bd54
+
+PODFILE CHECKSUM: dc45d121e1adb0529f767004b0dc90e2d0c4cbbf
+
+COCOAPODS: 1.1.1

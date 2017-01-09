@@ -31,12 +31,13 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'ResearchSuiteTaskBuilder/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'ResearchSuiteTaskBuilder' => ['ResearchSuiteTaskBuilder/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Gloss', '~> 1.1'
+  s.dependency 'ResearchKit', '1.3.1'
 end

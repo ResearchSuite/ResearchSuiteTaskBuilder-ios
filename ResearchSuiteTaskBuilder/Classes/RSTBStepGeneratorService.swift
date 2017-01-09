@@ -1,0 +1,72 @@
+//
+//  RSTBStepGeneratorService.swift
+//  Pods
+//
+//  Created by James Kizer on 1/9/17.
+//
+//
+
+import ResearchKit
+import Gloss
+
+public class RSTBStepGeneratorService: NSObject {
+    
+    
+    static private var _service: RSTBStepGeneratorService = RSTBStepGeneratorService()
+    static public var service: RSTBStepGeneratorService {
+        return _service
+    }
+    
+    static public func initialize(services: [RSTBStepGenerator]) {
+        
+        self._service = RSTBStepGeneratorService(services: services)
+    }
+    
+    private var loader: RSTBServiceLoader<RSTBStepGenerator>!
+    
+    public override convenience init() {
+        let services:[RSTBStepGenerator] = []
+        self.init(services: services)
+    }
+    
+    public init(services: [RSTBStepGenerator]) {
+        let loader:RSTBServiceLoader<RSTBStepGenerator> = RSTBServiceLoader()
+        services.forEach({loader.addService(service: $0)})
+        self.loader = loader
+    }
+    
+    public func generateStep(type: String,
+                             jsonObject: JSON,
+                             helper:RSTBTaskBuilderHelper) -> ORKStep? {
+        
+        let stepGenerators = self.loader.iterator()
+        
+        for stepGenerator in stepGenerators {
+            if stepGenerator.supportsType(type: type),
+                let step = stepGenerator.generateStep(type: type, jsonObject: jsonObject, helper: helper) {
+                return step
+            }
+        }
+        
+        return nil
+        
+    }
+    
+    public func processStepResult(type: String,
+                                  jsonObject: JsonObject,
+                                  result: ORKStepResult,
+                                  helper: RSTBTaskBuilderHelper) -> JSON? {
+        
+        let stepGenerators = self.loader.iterator()
+        
+        for stepGenerator in stepGenerators {
+            if stepGenerator.supportsType(type: type),
+                let resultJSON = stepGenerator.processStepResult(type: type, jsonObject: jsonObject, result: result, helper: helper) {
+                return resultJSON
+            }
+        }
+        
+        return nil
+        
+    }
+}
