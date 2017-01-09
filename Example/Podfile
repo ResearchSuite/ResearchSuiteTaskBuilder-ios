@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ResearchSuiteTaskBuilder_Example' do
+  pod 'ResearchSuiteTaskBuilder', :path => '../'
+
+  target 'ResearchSuiteTaskBuilder_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
