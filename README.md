@@ -22,7 +22,7 @@ pod "ResearchSuiteTaskBuilder"
 
 ## Author
 
-jdkizer9, james.kizer@gmail.com
+James Kizer @ Cornell Tech Foundry
 
 ## License
 
