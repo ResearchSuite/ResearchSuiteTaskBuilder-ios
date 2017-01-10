@@ -21,6 +21,14 @@ open class RSTBBooleanStepGenerator: RSTBQuestionStepGenerator {
     }
     
     open override func processQuestionResult(type: String, result: ORKQuestionResult, helper: RSTBTaskBuilderHelper) -> JSON? {
-        fatalError("Not implemented")
+        if let result = result as? ORKBooleanQuestionResult,
+            let answer = result.booleanAnswer {
+            return [
+                "identifier": result.identifier,
+                "type": type,
+                "answer": answer
+            ]
+        }
+        return  nil
     }
 }

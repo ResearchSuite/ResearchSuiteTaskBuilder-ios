@@ -27,8 +27,8 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             RSTBMultipleChoiceStepGenerator(),
             RSTBTimePickerStepGenerator(),
             RSTBFormStepGenerator(),
-            RSTBDefaultStepGenerator(),
-            RSTBBooleanStepGenerator()
+            RSTBBooleanStepGenerator(),
+            RSTBDefaultStepGenerator()
         ]
         
         let answerFormatGeneratorServices: [RSTBAnswerFormatGenerator] = [
