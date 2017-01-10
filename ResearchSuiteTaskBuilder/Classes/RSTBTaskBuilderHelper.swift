@@ -41,7 +41,7 @@ open class RSTBTaskBuilderHelper: NSObject {
                 return nil
         }
         
-        let json = try? JSONSerialization.jsonObject(with: fileContent, options: JSONSerialization.ReadingOptions.mutableContainers)
+        let json = try! JSONSerialization.jsonObject(with: fileContent, options: JSONSerialization.ReadingOptions.mutableContainers)
         
         return json as JsonElement?
     }

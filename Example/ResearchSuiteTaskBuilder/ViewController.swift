@@ -27,7 +27,8 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             RSTBMultipleChoiceStepGenerator(),
             RSTBTimePickerStepGenerator(),
             RSTBFormStepGenerator(),
-            RSTBDefaultStepGenerator()
+            RSTBDefaultStepGenerator(),
+            RSTBBooleanStepGenerator()
         ]
         
         let answerFormatGeneratorServices: [RSTBAnswerFormatGenerator] = [
@@ -35,13 +36,14 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             RSTBIntegerStepGenerator(),
             RSTBTimePickerStepGenerator(),
             RSTBSingleChoiceStepGenerator(),
-            RSTBMultipleChoiceStepGenerator()
+            RSTBMultipleChoiceStepGenerator(),
+            RSTBBooleanStepGenerator()
         ]
         
         let elementGeneratorServices: [RSTBElementGenerator] = [
             RSTBElementListGenerator(),
             RSTBElementFileGenerator(),
-            RTSBElementSelectorGenerator()
+            RSTBElementSelectorGenerator()
         ]
         
         // Do any additional setup after loading the view, typically from a nib.
