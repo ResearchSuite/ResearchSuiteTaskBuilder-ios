@@ -1,6 +1,0 @@
-framework module Pods_ResearchSuiteTaskBuilder_Example {
-  umbrella header "Pods-ResearchSuiteTaskBuilder_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
