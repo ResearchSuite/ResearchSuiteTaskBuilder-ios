@@ -28,6 +28,7 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             RSTBTimePickerStepGenerator(),
             RSTBFormStepGenerator(),
             RSTBBooleanStepGenerator(),
+            RSTBPasscodeStepGenerator(),
             RSTBDefaultStepGenerator()
         ]
         

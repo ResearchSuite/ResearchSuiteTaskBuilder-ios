@@ -34,6 +34,32 @@ open class RSTBTextFieldStepGenerator: RSTBQuestionStepGenerator {
         } ()
         
         answerFormat.multipleLines = textFieldDescriptor.multipleLines
+        
+        switch textFieldDescriptor.textType {
+    
+        case .normal:
+            break
+        case .email:
+            answerFormat.autocapitalizationType = .none
+            answerFormat.autocorrectionType = .default
+            answerFormat.spellCheckingType = .no
+            answerFormat.keyboardType = .emailAddress
+            answerFormat.isSecureTextEntry = false
+        case .name:
+            answerFormat.autocapitalizationType = .words
+            answerFormat.autocorrectionType = .default
+            answerFormat.spellCheckingType = .default
+            answerFormat.keyboardType = .default
+            answerFormat.isSecureTextEntry = false
+        case .password:
+            answerFormat.autocapitalizationType = .none
+            answerFormat.autocorrectionType = .no
+            answerFormat.spellCheckingType = .no
+            answerFormat.keyboardType = .default
+            answerFormat.isSecureTextEntry = true
+            
+        }
+        
         return answerFormat
     }
     
