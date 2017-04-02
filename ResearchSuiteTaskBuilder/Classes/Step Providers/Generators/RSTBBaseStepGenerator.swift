@@ -13,13 +13,21 @@ public protocol RSTBBaseStepGenerator: RSTBStepGenerator {
     var supportedTypes: [String]! {get}
 }
 
-extension RSTBBaseStepGenerator {
+public extension RSTBBaseStepGenerator {
     public func supportsType(type: String) -> Bool {
         return self.supportedTypes.contains(type)
     }
     
     public func supportedStepTypes() -> [String] {
         return self.supportedTypes
+    }
+    
+    public func generateStep(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKStep? {
+        return nil
+    }
+    
+    func generateSteps(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> [ORKStep]? {
+        return nil
     }
 }
 

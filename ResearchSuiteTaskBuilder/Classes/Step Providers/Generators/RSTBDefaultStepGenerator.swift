@@ -33,6 +33,11 @@ open class RSTBDefaultStepGenerator: RSTBStepGenerator {
         return step
     }
     
+    public func generateSteps(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> [ORKStep]? {
+        
+        return [generateStep(type: type, jsonObject: jsonObject, helper: helper)].flatMap({$0})
+    }
+    
     public func processStepResult(type: String,
                                   jsonObject: JsonObject,
                                   result: ORKStepResult,

@@ -35,16 +35,20 @@ public class RSTBStepGeneratorService: NSObject {
         self.loader = loader
     }
     
-    public func generateStep(type: String,
+    public func generateSteps(type: String,
                              jsonObject: JSON,
-                             helper:RSTBTaskBuilderHelper) -> ORKStep? {
+                             helper:RSTBTaskBuilderHelper) -> [ORKStep]? {
         
         let stepGenerators = self.loader.iterator()
         
         for stepGenerator in stepGenerators {
-            if stepGenerator.supportsType(type: type),
-                let step = stepGenerator.generateStep(type: type, jsonObject: jsonObject, helper: helper) {
-                return step
+            if stepGenerator.supportsType(type: type) {
+                if let steps = stepGenerator.generateSteps(type: type, jsonObject: jsonObject, helper: helper) {
+                    return steps
+                }
+                else if let step = stepGenerator.generateStep(type: type, jsonObject: jsonObject, helper: helper) {
+                    return [step]
+                }
             }
         }
         

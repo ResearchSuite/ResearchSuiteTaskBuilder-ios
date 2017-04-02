@@ -82,10 +82,10 @@ open class RSTBTaskBuilder {
             return self.generateSteps(forElements: elements)
         }
         else {
-            guard let step = self.createStep(forType: descriptor.type, withJsonObject: element) else {
+            guard let steps = self.createSteps(forType: descriptor.type, withJsonObject: element) else {
                 return nil
             }
-            return [step]
+            return steps
         }
         
     }
@@ -98,8 +98,8 @@ open class RSTBTaskBuilder {
         return Array(stepArrays.joined())
     }
     
-    private func createStep(forType type: String, withJsonObject jsonObject: JsonObject) -> ORKStep? {
-        return self.stepGeneratorService.generateStep(type: type, jsonObject: jsonObject, helper: self.helper)
+    private func createSteps(forType type: String, withJsonObject jsonObject: JsonObject) -> [ORKStep]? {
+        return self.stepGeneratorService.generateSteps(type: type, jsonObject: jsonObject, helper: self.helper)
     }
     
     public func steps(forElementFilename elementFilename: String) -> [ORKStep]? {

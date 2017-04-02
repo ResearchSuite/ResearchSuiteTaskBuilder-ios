@@ -11,9 +11,9 @@ import Gloss
 open class RSTBChoiceStepDescriptor: RSTBQuestionStepDescriptor {
     
     open class ChoiceItem: Decodable {
-        public let text: String!
+        public let text: String
         public let detailText: String?
-        public let value: NSCoding & NSCopying & NSObjectProtocol!
+        public let value: NSCoding & NSCopying & NSObjectProtocol
         public let exclusive: Bool
         
         
