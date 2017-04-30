@@ -57,7 +57,12 @@ open class RSTBTextFieldStepGenerator: RSTBQuestionStepGenerator {
             answerFormat.spellCheckingType = .no
             answerFormat.keyboardType = .default
             answerFormat.isSecureTextEntry = true
-            
+        case .number:
+            answerFormat.autocapitalizationType = .none
+            answerFormat.autocorrectionType = .default
+            answerFormat.spellCheckingType = .no
+            answerFormat.keyboardType = .numberPad
+            answerFormat.isSecureTextEntry = false
         }
         
         return answerFormat

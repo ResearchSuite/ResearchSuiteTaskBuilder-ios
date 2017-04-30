@@ -11,6 +11,8 @@ import Gloss
 
 open class RSTBQuestionStepGenerator: RSTBBaseStepGenerator, RSTBAnswerFormatGenerator {
     
+    public init() {}
+    
     open var supportedTypes: [String]! {
         return nil
     }

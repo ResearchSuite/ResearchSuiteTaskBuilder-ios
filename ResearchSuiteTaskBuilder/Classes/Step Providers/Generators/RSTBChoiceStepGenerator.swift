@@ -15,7 +15,7 @@ open class RSTBChoiceStepGenerator: RSTBQuestionStepGenerator {
         fatalError("abstract class not implemented")
     }
     
-    public typealias ChoiceItemFilter = ( (RSTBChoiceStepDescriptor.ChoiceItem) -> (Bool))
+    public typealias ChoiceItemFilter = ( (RSTBChoiceItemDescriptor) -> (Bool))
     
     open func generateFilter(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ChoiceItemFilter? {
         
@@ -24,7 +24,7 @@ open class RSTBChoiceStepGenerator: RSTBQuestionStepGenerator {
         }
     }
     
-    open func generateChoices(items: [RSTBChoiceStepDescriptor.ChoiceItem], valueSuffix: String?, shouldShuffle: Bool?) -> [ORKTextChoice] {
+    open func generateChoices(items: [RSTBChoiceItemDescriptor], valueSuffix: String?, shouldShuffle: Bool?) -> [ORKTextChoice] {
         
         let shuffledItems = items.shuffled(shouldShuffle: shouldShuffle ?? false)
         
@@ -53,7 +53,7 @@ open class RSTBChoiceStepGenerator: RSTBQuestionStepGenerator {
             return nil
         }
         
-        let filteredItems: [RSTBChoiceStepDescriptor.ChoiceItem] = {
+        let filteredItems: [RSTBChoiceItemDescriptor] = {
             
             if let itemFilter = self.generateFilter(type: type, jsonObject: jsonObject, helper: helper) {
                 return choiceStepDescriptor.items.filter(itemFilter)

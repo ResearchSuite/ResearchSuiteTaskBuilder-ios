@@ -10,8 +10,8 @@ import Gloss
 
 open class RSTBElementDescriptor: Decodable {
     
-    public let type: String!
-    public let identifier: String!
+    public let type: String
+    public let identifier: String
     
     // MARK: - Deserialization
     

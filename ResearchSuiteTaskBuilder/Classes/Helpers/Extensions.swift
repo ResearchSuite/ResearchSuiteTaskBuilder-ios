@@ -37,13 +37,7 @@ extension MutableCollection where Indices.Iterator.Element == Index {
         }
     }
     
-    func shuffled() -> [Iterator.Element] {
-        var result = Array(self)
-        result.shuffle()
-        return result
-    }
-    
-    func shuffled(shouldShuffle: Bool) -> [Iterator.Element] {
+    func shuffled(shouldShuffle: Bool = true) -> [Iterator.Element] {
         if shouldShuffle {
             var result = Array(self)
             result.shuffle()

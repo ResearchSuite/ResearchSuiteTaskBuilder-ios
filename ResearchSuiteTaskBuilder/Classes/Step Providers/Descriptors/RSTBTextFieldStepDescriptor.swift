@@ -15,6 +15,7 @@ open class RSTBTextFieldStepDescriptor: RSTBQuestionStepDescriptor {
         case name = "name"
         case email = "email"
         case password = "password"
+        case number = "number"
     }
     
     public let maximumLength: Int?
