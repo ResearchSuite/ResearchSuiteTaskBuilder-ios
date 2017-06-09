@@ -29,6 +29,7 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             RSTBFormStepGenerator(),
             RSTBBooleanStepGenerator(),
             RSTBPasscodeStepGenerator(),
+            RSTBLocationStepGenerator(),
             RSTBDefaultStepGenerator()
         ]
         
@@ -38,6 +39,7 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             RSTBTimePickerStepGenerator(),
             RSTBSingleChoiceStepGenerator(),
             RSTBMultipleChoiceStepGenerator(),
+            RSTBLocationStepGenerator(),
             RSTBBooleanStepGenerator()
         ]
         
@@ -77,6 +79,16 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             print("finished!!")
             
             let result: ORKTaskResult = taskViewController.result
+            if let stepResult = result.stepResult(forStepIdentifier: "location"),
+                let locationResult = stepResult.firstResult as? ORKLocationQuestionResult,
+                let location = locationResult.locationAnswer {
+                print(location.coordinate)
+                print(location.addressDictionary)
+                print(location.userInput)
+                print(location.region)
+            }
+            
+            print((result.stepResult(forStepIdentifier: "location")?.firstResult as? ORKLocationQuestionResult))
             
             if let stepResultsJSON = self.stepBuilder.processResult(result: result, forElementFilename: "sample") {
                 

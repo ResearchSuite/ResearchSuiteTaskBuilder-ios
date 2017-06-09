@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ResearchSuiteTaskBuilder'
-  s.version          = '0.5.1'
+  s.version          = '0.6.0'
   s.summary          = 'The ResearchSuite Task Builder is an easy and extensible way to create Tasks for ResearchKit.'
 
 # This description is used to generate tags and improve search results.
