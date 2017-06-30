@@ -24,8 +24,15 @@ open class RSTBTaskBuilder {
     private var stepGeneratorService: RSTBStepGeneratorService!
     private var answerFormatGeneratorService: RSTBAnswerFormatGeneratorService!
     private var elementGeneratorService: RSTBElementGeneratorService!
+    private var taskGeneratorService: RSTBTaskGeneratorService!
     
-    public init(stateHelper:RSTBStateHelper?, elementGeneratorServices: [RSTBElementGenerator]?, stepGeneratorServices: [RSTBStepGenerator]?, answerFormatGeneratorServices: [RSTBAnswerFormatGenerator]?) {
+    public init(
+        stateHelper:RSTBStateHelper?,
+        elementGeneratorServices: [RSTBElementGenerator]?,
+        stepGeneratorServices: [RSTBStepGenerator]?,
+        answerFormatGeneratorServices: [RSTBAnswerFormatGenerator]?,
+        taskGeneratorServices: [RSTBTaskGenerator.Type]? = nil
+        ) {
         self.helper = RSTBTaskBuilderHelper(builder: self, stateHelper: stateHelper)
         
         if let _services = stepGeneratorServices {
@@ -49,6 +56,13 @@ open class RSTBTaskBuilder {
             self.elementGeneratorService = RSTBElementGeneratorService()
         }
         
+        if let _services = taskGeneratorServices {
+            self.taskGeneratorService = RSTBTaskGeneratorService(taskGenerators: _services)
+        }
+        else {
+            self.taskGeneratorService = RSTBTaskGeneratorService()
+        }
+        
     }
     
     public init() {
@@ -66,6 +80,26 @@ open class RSTBTaskBuilder {
         else {
             return nil
         }
+    }
+    
+    public func task(forElement jsonElement: JsonObject) -> ORKTask? {
+        
+        guard let descriptor = RSTBElementDescriptor(json: jsonElement) else {
+            return nil
+        }
+        
+        return self.taskGeneratorService.generateTask(type: descriptor.type, jsonObject: jsonElement, helper: self.helper)
+        
+    }
+    
+    public func task(forElementFilename elementFilename: String) -> ORKTask? {
+        
+        guard let element = self.helper.getJson(forFilename: elementFilename) as? JsonObject else {
+            return nil
+        }
+        
+        return self.task(forElement: element)
+        
     }
     
     private func generateSteps(forElement element: JsonObject) -> [ORKStep]? {
@@ -113,7 +147,7 @@ open class RSTBTaskBuilder {
     }
     
     
-    
+    @available(*, deprecated)
     public func processResult(result: ORKTaskResult, forElement jsonElement: JsonElement) -> [JSON]? {
         if let jsonObject = jsonElement as? JsonObject {
             return self.processResult(result: result, forObject: jsonObject)
@@ -126,6 +160,7 @@ open class RSTBTaskBuilder {
         }
     }
     
+    @available(*, deprecated)
     public func processResult(result: ORKTaskResult, forElementFilename elementFilename: String) -> [JSON]? {
         
         guard let element = self.helper.getJson(forFilename: elementFilename) else {
@@ -188,6 +223,7 @@ open class RSTBTaskBuilder {
         return self.answerFormatGeneratorService.generateAnswerFormat(type: type, jsonObject: jsonObject, helper: helper)
     }
     
+    @available(*, deprecated)
     public func processQuestionResult(type: String, result: ORKQuestionResult, helper: RSTBTaskBuilderHelper) -> JSON? {
         
         return self.answerFormatGeneratorService.processQuestionResult(type: type, result: result, helper: helper)

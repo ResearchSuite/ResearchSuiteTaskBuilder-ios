@@ -1,0 +1,10 @@
+{
+  "type": "orderedTask",
+  "identifier": "sample",
+  "rootStepElement": {
+    "identifier": "sampleSteps",
+    "type": "elementFile",
+    "elementFileName": "sample"
+  }
+
+}

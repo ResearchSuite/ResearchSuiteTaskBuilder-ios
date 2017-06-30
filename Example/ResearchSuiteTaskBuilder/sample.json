@@ -9,11 +9,22 @@
       "text": "In order to help us gain a better understanding of your thoughts, feelings and experiences, please complete the following questions. It will take approximately 12 minutes to complete today’s portion and about 4-6 minutes per day (2-3 minutes in the morning and 2-3 minutes in the evening) for the next 21 days."
     },
     {
+      "identifier": "pss1",
+      "type": "scale",
+      "text": "In the last month, how often have you felt that you were unable to control the important things in your life?",
+      "minimumValue": 0,
+      "minimumDescription": "never",
+      "maximumValue": 4,
+      "maximumDescription": "very often",
+      "defaultValue": -1,
+      "stepValue": 1
+    },
+    {
       "identifier": "location",
       "type": "location",
       "title": "Home",
       "text": "Drop a pin at your home.",
-      "optional": "false",
+      "optional": false,
       "useCurrentLocation": true
     },
     {

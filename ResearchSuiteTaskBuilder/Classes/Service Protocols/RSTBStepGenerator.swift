@@ -19,6 +19,7 @@ public protocol RSTBStepGenerator {
     func supportsType(type: String) -> Bool
     func supportedStepTypes() -> [String]
     
+    @available(*, deprecated)
     func processStepResult(type: String,
                            jsonObject: JsonObject,
                            result: ORKStepResult,
