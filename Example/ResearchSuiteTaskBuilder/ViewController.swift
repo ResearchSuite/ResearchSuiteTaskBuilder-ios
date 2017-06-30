@@ -30,6 +30,7 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             RSTBBooleanStepGenerator(),
             RSTBPasscodeStepGenerator(),
             RSTBLocationStepGenerator(),
+            RSTBScaleStepGenerator(),
             RSTBDefaultStepGenerator()
         ]
         

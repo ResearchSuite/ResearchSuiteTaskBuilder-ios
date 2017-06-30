@@ -56,6 +56,7 @@ public class RSTBStepGeneratorService: NSObject {
         
     }
     
+    @available(*, deprecated)
     public func processStepResult(type: String,
                                   jsonObject: JsonObject,
                                   result: ORKStepResult,

@@ -25,7 +25,13 @@ open class RSTBTaskBuilder {
     private var answerFormatGeneratorService: RSTBAnswerFormatGeneratorService!
     private var elementGeneratorService: RSTBElementGeneratorService!
     
-    public init(stateHelper:RSTBStateHelper?, elementGeneratorServices: [RSTBElementGenerator]?, stepGeneratorServices: [RSTBStepGenerator]?, answerFormatGeneratorServices: [RSTBAnswerFormatGenerator]?) {
+    public init(
+        stateHelper:RSTBStateHelper?,
+        elementGeneratorServices: [RSTBElementGenerator]?,
+        stepGeneratorServices: [RSTBStepGenerator]?,
+        answerFormatGeneratorServices: [RSTBAnswerFormatGenerator]?,
+        task
+        ) {
         self.helper = RSTBTaskBuilderHelper(builder: self, stateHelper: stateHelper)
         
         if let _services = stepGeneratorServices {
@@ -66,6 +72,14 @@ open class RSTBTaskBuilder {
         else {
             return nil
         }
+    }
+    
+    public func task(forTaskElement jsonElement: JsonObject) -> ORKTask? {
+        
+        guard let descriptor = RSTBElementDescriptor(json: jsonElement) else {
+            return nil
+        }
+        
     }
     
     private func generateSteps(forElement element: JsonObject) -> [ORKStep]? {
@@ -113,7 +127,7 @@ open class RSTBTaskBuilder {
     }
     
     
-    
+    @available(*, deprecated)
     public func processResult(result: ORKTaskResult, forElement jsonElement: JsonElement) -> [JSON]? {
         if let jsonObject = jsonElement as? JsonObject {
             return self.processResult(result: result, forObject: jsonObject)
@@ -126,6 +140,7 @@ open class RSTBTaskBuilder {
         }
     }
     
+    @available(*, deprecated)
     public func processResult(result: ORKTaskResult, forElementFilename elementFilename: String) -> [JSON]? {
         
         guard let element = self.helper.getJson(forFilename: elementFilename) else {
@@ -188,6 +203,7 @@ open class RSTBTaskBuilder {
         return self.answerFormatGeneratorService.generateAnswerFormat(type: type, jsonObject: jsonObject, helper: helper)
     }
     
+    @available(*, deprecated)
     public func processQuestionResult(type: String, result: ORKQuestionResult, helper: RSTBTaskBuilderHelper) -> JSON? {
         
         return self.answerFormatGeneratorService.processQuestionResult(type: type, result: result, helper: helper)
