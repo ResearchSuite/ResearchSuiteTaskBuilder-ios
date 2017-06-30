@@ -24,7 +24,7 @@
       "type": "location",
       "title": "Home",
       "text": "Drop a pin at your home.",
-      "optional": "false",
+      "optional": false,
       "useCurrentLocation": true
     },
     {

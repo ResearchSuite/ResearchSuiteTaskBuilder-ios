@@ -12,7 +12,7 @@ import ResearchKit
 
 class ViewController: UIViewController, ORKTaskViewControllerDelegate {
     
-    var stepBuilder: RSTBTaskBuilder!
+    var taskBuilder: RSTBTaskBuilder!
     
     var taskFinishedHandler: ((ORKTaskViewController) -> ())?
     
@@ -50,12 +50,18 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             RSTBElementSelectorGenerator()
         ]
         
+        let taskGenerators: [RSTBTaskGenerator.Type] = [
+            RSTBOrderedTaskGenerator.self
+        ]
+        
         // Do any additional setup after loading the view, typically from a nib.
-        self.stepBuilder = RSTBTaskBuilder(
+        self.taskBuilder = RSTBTaskBuilder(
             stateHelper: nil,
             elementGeneratorServices: elementGeneratorServices,
             stepGeneratorServices: stepGeneratorServices,
-            answerFormatGeneratorServices: answerFormatGeneratorServices)
+            answerFormatGeneratorServices: answerFormatGeneratorServices,
+            taskGeneratorServices: taskGenerators
+        )
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,7 +97,7 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             
             print((result.stepResult(forStepIdentifier: "location")?.firstResult as? ORKLocationQuestionResult))
             
-            if let stepResultsJSON = self.stepBuilder.processResult(result: result, forElementFilename: "sample") {
+            if let stepResultsJSON = self.taskBuilder.processResult(result: result, forElementFilename: "sample") {
                 
                 print(stepResultsJSON)
                 taskViewController.dismiss(animated: true, completion: nil)
@@ -108,8 +114,12 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
     
     
     @IBAction func sampleTaskButtonPressed(_ sender: Any) {
-        if let steps = self.stepBuilder.steps(forElementFilename: "sample") {
-            let task = ORKOrderedTask(identifier: "sample", steps: steps)
+//        if let steps = self.stepBuilder.steps(forElementFilename: "sample") {
+//            let task = ORKOrderedTask(identifier: "sample", steps: steps)
+//            self.runTask(task: task)
+//        }
+        
+        if let task = self.taskBuilder.task(forElementFilename: "sampleTask") {
             self.runTask(task: task)
         }
     }

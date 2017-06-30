@@ -14,8 +14,14 @@ public class RSTBTaskGeneratorService: NSObject {
     
     let taskGenerators: [RSTBTaskGenerator.Type]
     
+    public override convenience init() {
+        let taskGenerators: [RSTBTaskGenerator.Type] = []
+        self.init(taskGenerators: taskGenerators)
+    }
+    
     public init(taskGenerators: [RSTBTaskGenerator.Type]) {
         self.taskGenerators = taskGenerators
+        super.init()
     }
     
     public func generateTask(type: String,
