@@ -38,6 +38,17 @@ open class RSTBDefaultStepGenerator: RSTBStepGenerator {
         return [generateStep(type: type, jsonObject: jsonObject, helper: helper)].flatMap({$0})
     }
     
+    public func generateSteps(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper, identifierPrefix: String) -> [ORKStep]? {
+        guard let element = RSTBStepDescriptor(json: jsonObject) else {
+            return nil
+        }
+        
+        let step = ORKInstructionStep(identifier: "\(identifierPrefix).\(element.identifier)")
+        step.text = element.identifier
+        step.detailText = "Elements of type \(type) not yet supported."
+        return [step]
+    }
+    
     public func processStepResult(type: String,
                                   jsonObject: JsonObject,
                                   result: ORKStepResult,

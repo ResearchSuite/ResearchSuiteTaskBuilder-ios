@@ -20,7 +20,10 @@ public protocol RSTBStateHelper: class {
 
 open class RSTBTaskBuilder {
     
-    private var helper:RSTBTaskBuilderHelper!
+    private var _helper:RSTBTaskBuilderHelper!
+    public var helper:RSTBTaskBuilderHelper {
+        return self._helper
+    }
     private var stepGeneratorService: RSTBStepGeneratorService!
     private var answerFormatGeneratorService: RSTBAnswerFormatGeneratorService!
     private var elementGeneratorService: RSTBElementGeneratorService!
@@ -33,7 +36,7 @@ open class RSTBTaskBuilder {
         answerFormatGeneratorServices: [RSTBAnswerFormatGenerator]?,
         taskGeneratorServices: [RSTBTaskGenerator.Type]? = nil
         ) {
-        self.helper = RSTBTaskBuilderHelper(builder: self, stateHelper: stateHelper)
+        self._helper = RSTBTaskBuilderHelper(builder: self, stateHelper: stateHelper)
         
         if let _services = stepGeneratorServices {
             self.stepGeneratorService = RSTBStepGeneratorService(services: _services)
@@ -65,10 +68,10 @@ open class RSTBTaskBuilder {
         
     }
     
-    public init() {
-        self.helper = RSTBTaskBuilderHelper(builder: self, stateHelper: nil)
-        self.stepGeneratorService = RSTBStepGeneratorService()
-    }
+//    public init() {
+//        self._helper = RSTBTaskBuilderHelper(builder: self, stateHelper: nil)
+//        self.stepGeneratorService = RSTBStepGeneratorService()
+//    }
     
     public func steps(forElement jsonElement: JsonElement) -> [ORKStep]? {
         if let jsonObject = jsonElement as? JsonObject {
@@ -132,8 +135,8 @@ open class RSTBTaskBuilder {
         return Array(stepArrays.joined())
     }
     
-    private func createSteps(forType type: String, withJsonObject jsonObject: JsonObject) -> [ORKStep]? {
-        return self.stepGeneratorService.generateSteps(type: type, jsonObject: jsonObject, helper: self.helper)
+    public func createSteps(forType type: String, withJsonObject jsonObject: JsonObject, identifierPrefix: String = "") -> [ORKStep]? {
+        return self.stepGeneratorService.generateSteps(type: type, jsonObject: jsonObject, helper: self.helper, identifierPrefix: identifierPrefix)
     }
     
     public func steps(forElementFilename elementFilename: String) -> [ORKStep]? {

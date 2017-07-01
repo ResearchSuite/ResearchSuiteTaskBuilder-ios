@@ -9,7 +9,7 @@
 import ResearchKit
 import Gloss
 
-public class RSTBStepGeneratorService: NSObject {
+open class RSTBStepGeneratorService: NSObject {
     
     
     static private var _service: RSTBStepGeneratorService = RSTBStepGeneratorService()
@@ -37,7 +37,8 @@ public class RSTBStepGeneratorService: NSObject {
     
     public func generateSteps(type: String,
                              jsonObject: JSON,
-                             helper:RSTBTaskBuilderHelper) -> [ORKStep]? {
+                             helper:RSTBTaskBuilderHelper,
+                             identifierPrefix: String = "") -> [ORKStep]? {
         
         let stepGenerators = self.loader.iterator()
         

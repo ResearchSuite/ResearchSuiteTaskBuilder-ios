@@ -10,7 +10,7 @@ import Foundation
 import ResearchKit
 import Gloss
 
-public class RSTBTaskGeneratorService: NSObject {
+open class RSTBTaskGeneratorService: NSObject {
     
     let taskGenerators: [RSTBTaskGenerator.Type]
     

@@ -9,7 +9,7 @@
 import ResearchKit
 import Gloss
 
-class RSTBElementGeneratorService: NSObject {
+open class RSTBElementGeneratorService: NSObject {
     
     static private var _service: RSTBElementGeneratorService = RSTBElementGeneratorService()
     static public var service: RSTBElementGeneratorService {

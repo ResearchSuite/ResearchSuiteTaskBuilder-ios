@@ -29,5 +29,9 @@ public extension RSTBBaseStepGenerator {
     func generateSteps(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> [ORKStep]? {
         return nil
     }
+    
+    func generateSteps(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper, identifierPrefix: String) -> [ORKStep]? {
+        return nil
+    }
 }
 

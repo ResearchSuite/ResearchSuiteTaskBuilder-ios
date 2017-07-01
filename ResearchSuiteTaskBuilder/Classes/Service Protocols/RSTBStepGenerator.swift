@@ -15,7 +15,12 @@ public protocol RSTBStepGenerator {
     
     @available(*, deprecated)
     func generateStep(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKStep?
+    
+    @available(*, deprecated)
     func generateSteps(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> [ORKStep]?
+    
+    func generateSteps(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper, identifierPrefix: String) -> [ORKStep]?
+    
     func supportsType(type: String) -> Bool
     func supportedStepTypes() -> [String]
     
