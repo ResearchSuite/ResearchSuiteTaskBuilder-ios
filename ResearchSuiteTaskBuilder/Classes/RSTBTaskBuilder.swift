@@ -28,13 +28,19 @@ open class RSTBTaskBuilder {
     private var answerFormatGeneratorService: RSTBAnswerFormatGeneratorService!
     private var elementGeneratorService: RSTBElementGeneratorService!
     private var taskGeneratorService: RSTBTaskGeneratorService!
+    private var consentDocumentGeneratorService: RSTBConsentDocumentGeneratorService!
+    private var consentSectionGeneratorService: RSTBConsentSectionGeneratorService!
+    private var consentSignatureGeneratorService: RSTBConsentSignatureGeneratorService!
     
     public init(
         stateHelper:RSTBStateHelper?,
         elementGeneratorServices: [RSTBElementGenerator]?,
         stepGeneratorServices: [RSTBStepGenerator]?,
         answerFormatGeneratorServices: [RSTBAnswerFormatGenerator]?,
-        taskGeneratorServices: [RSTBTaskGenerator.Type]? = nil
+        taskGeneratorServices: [RSTBTaskGenerator.Type]? = nil,
+        consentDocumentGeneratorServices: [RSTBConsentDocumentGenerator.Type]? = nil,
+        consentSectionGeneratorServices: [RSTBConsentSectionGenerator.Type]? = nil,
+        consentSignatureGeneratorServices: [RSTBConsentSignatureGenerator.Type]? = nil
         ) {
         self._helper = RSTBTaskBuilderHelper(builder: self, stateHelper: stateHelper)
         
@@ -64,6 +70,27 @@ open class RSTBTaskBuilder {
         }
         else {
             self.taskGeneratorService = RSTBTaskGeneratorService()
+        }
+        
+        if let _services = consentDocumentGeneratorServices {
+            self.consentDocumentGeneratorService = RSTBConsentDocumentGeneratorService(generators: _services)
+        }
+        else {
+            self.consentDocumentGeneratorService = RSTBConsentDocumentGeneratorService()
+        }
+        
+        if let _services = consentSectionGeneratorServices {
+            self.consentSectionGeneratorService = RSTBConsentSectionGeneratorService(generators: _services)
+        }
+        else {
+            self.consentSectionGeneratorService = RSTBConsentSectionGeneratorService()
+        }
+        
+        if let _services = consentSignatureGeneratorServices {
+            self.consentSignatureGeneratorService = RSTBConsentSignatureGeneratorService(generators: _services)
+        }
+        else {
+            self.consentSignatureGeneratorService = RSTBConsentSignatureGeneratorService()
         }
         
     }
@@ -232,5 +259,19 @@ open class RSTBTaskBuilder {
         return self.answerFormatGeneratorService.processQuestionResult(type: type, result: result, helper: helper)
         
     }
+    
+    public func generateConsentDocument(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKConsentDocument? {
+        return self.consentDocumentGeneratorService.generate(type: type, jsonObject: jsonObject, helper: helper)
+    }
+    
+    public func generateConsentSection(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKConsentSection? {
+        return self.consentSectionGeneratorService.generate(type: type, jsonObject: jsonObject, helper: helper)
+    }
+    
+    public func generateConsentSignature(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKConsentSignature? {
+        return self.consentSignatureGeneratorService.generate(type: type, jsonObject: jsonObject, helper: helper)
+    }
+    
+    
     
 }
