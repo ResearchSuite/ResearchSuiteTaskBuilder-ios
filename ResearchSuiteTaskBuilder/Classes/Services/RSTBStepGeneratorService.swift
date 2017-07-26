@@ -44,7 +44,11 @@ open class RSTBStepGeneratorService: NSObject {
         
         for stepGenerator in stepGenerators {
             if stepGenerator.supportsType(type: type) {
-                if let steps = stepGenerator.generateSteps(type: type, jsonObject: jsonObject, helper: helper) {
+                
+                if let steps = stepGenerator.generateSteps(type: type, jsonObject: jsonObject, helper: helper, identifierPrefix: identifierPrefix) {
+                    return steps
+                }
+                else if let steps = stepGenerator.generateSteps(type: type, jsonObject: jsonObject, helper: helper) {
                     return steps
                 }
                 else if let step = stepGenerator.generateStep(type: type, jsonObject: jsonObject, helper: helper) {
