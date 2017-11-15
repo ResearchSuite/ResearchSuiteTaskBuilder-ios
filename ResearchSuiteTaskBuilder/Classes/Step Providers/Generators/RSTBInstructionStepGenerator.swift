@@ -30,6 +30,8 @@ open class RSTBInstructionStepGenerator: RSTBBaseStepGenerator {
         step.title = element.title
         step.text = element.text
         step.detailText = element.detailText
+        if let imageTitle = element.imageTitle { step.image = UIImage(named: imageTitle) }
+        if let auxImageTitle = element.auxImageTitle { step.auxiliaryImage = UIImage(named: auxImageTitle) }
         return step
     }
     
