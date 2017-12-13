@@ -13,21 +13,20 @@ open class RSTBStandardConsentDocumentDescriptor: RSTBElementDescriptor {
     
     public let sections: [JSON]
     public let signatures: [JSON]
-    public let title: String
+    public let title: String?
     
     // MARK: - Deserialization
     
     required public init?(json: JSON) {
         guard let sections: [JSON] = "sections" <~~ json,
-            let signatures: [JSON] = "signatures" <~~ json,
-            let title: String = "title" <~~ json
+            let signatures: [JSON] = "signatures" <~~ json
             else {
                 return nil
         }
         
         self.sections = sections
         self.signatures = signatures
-        self.title = title
+        self.title = "title" <~~ json
         
         super.init(json: json)
     }

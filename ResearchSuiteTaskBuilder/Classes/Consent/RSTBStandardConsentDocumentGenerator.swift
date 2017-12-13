@@ -50,7 +50,7 @@ open class RSTBStandardConsentDocument: ORKConsentDocument, RSTBConsentDocumentG
     }
     
     public init(
-        title: String,
+        title: String?,
         sections: [ORKConsentSection],
         signatures: [ORKConsentSignature]
     ) {
