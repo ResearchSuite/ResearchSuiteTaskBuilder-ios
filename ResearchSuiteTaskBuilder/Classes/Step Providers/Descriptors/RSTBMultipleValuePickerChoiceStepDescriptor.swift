@@ -7,7 +7,7 @@
 
 import Gloss
 
-open class RSTBValuePickerChoiceGroup<ChoiceItem: RSTBChoiceItemDescriptor>: Gloss.Decodable {
+open class RSTBValuePickerChoiceGroup<ChoiceItem: RSTBChoiceItemDescriptor>: Gloss.JSONDecodable {
     
     public let items: [ChoiceItem]
     public let shuffleItems: Bool

@@ -11,7 +11,7 @@ import Gloss
 
 open class RSTBDecimalStepDescriptor: RSTBQuestionStepDescriptor {
 
-    open class Range: Gloss.Decodable {
+    open class Range: Gloss.JSONDecodable {
         public let min: Double!
         public let max: Double!
         public let unit: String?
