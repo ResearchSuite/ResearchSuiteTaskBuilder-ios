@@ -15,8 +15,8 @@ extension Array {
             return nil
         }
         else{
-            let index = Int(arc4random_uniform(UInt32(self.count)))
-            print(index)
+            let count: Int = self.count
+            let index: Int = numericCast(arc4random_uniform(numericCast(count)))
             return self[index]
         }
     }
@@ -30,7 +30,7 @@ extension MutableCollection where Indices.Iterator.Element == Index {
         guard c > 1 else { return }
         
         for (unshuffledCount, firstUnshuffled) in zip(stride(from: c, to: 1, by: -1), indices) {
-            let d: IndexDistance = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
+            let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
             guard d != 0 else { continue }
             let i = index(firstUnshuffled, offsetBy: d)
             self.swapAt(firstUnshuffled, i)
