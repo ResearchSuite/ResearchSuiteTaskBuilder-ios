@@ -43,6 +43,7 @@ open class RSTBFormStepGenerator: RSTBBaseStepGenerator {
         }
         
         let formStep = ORKFormStep(identifier: formStepDescriptor.identifier, title: formStepDescriptor.title, text: formStepDescriptor.text)
+        formStep.isOptional = formStepDescriptor.optional
         formStep.formItems = formItems
         return formStep
     }

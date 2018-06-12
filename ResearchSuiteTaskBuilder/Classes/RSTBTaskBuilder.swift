@@ -20,11 +20,11 @@ public protocol RSTBStateHelper: class {
 
 open class RSTBTaskBuilder {
     
-    private var _helper:RSTBTaskBuilderHelper!
+    open var _helper:RSTBTaskBuilderHelper!
     public var helper:RSTBTaskBuilderHelper {
         return self._helper
     }
-    private var stepGeneratorService: RSTBStepGeneratorService!
+    open var stepGeneratorService: RSTBStepGeneratorService!
     private var answerFormatGeneratorService: RSTBAnswerFormatGeneratorService!
     private var elementGeneratorService: RSTBElementGeneratorService!
     private var taskGeneratorService: RSTBTaskGeneratorService!
@@ -162,7 +162,7 @@ open class RSTBTaskBuilder {
         return Array(stepArrays.joined())
     }
     
-    public func createSteps(forType type: String, withJsonObject jsonObject: JsonObject, identifierPrefix: String = "") -> [ORKStep]? {
+    open func createSteps(forType type: String, withJsonObject jsonObject: JsonObject, identifierPrefix: String = "") -> [ORKStep]? {
         return self.stepGeneratorService.generateSteps(type: type, jsonObject: jsonObject, helper: self.helper, identifierPrefix: identifierPrefix)
     }
     
