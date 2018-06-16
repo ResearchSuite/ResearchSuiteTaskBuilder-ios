@@ -14,6 +14,8 @@ public typealias JsonObject = JSON
 public typealias JsonArray = [JSON]
 
 public protocol RSTBStateHelper: class {
+    //this can be used for more ephemeral objects, not anything that should be persisted (e.g., LS2 SDK Manager)
+    func objectInState(forKey: String) -> AnyObject?
     func valueInState(forKey: String) -> NSSecureCoding?
     func setValueInState(value: NSSecureCoding?, forKey: String)
 }
