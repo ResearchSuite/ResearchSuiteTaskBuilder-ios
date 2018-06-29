@@ -27,7 +27,12 @@ open class RSTBQuestionStepGenerator: RSTBBaseStepGenerator, RSTBAnswerFormatGen
                 return nil
         }
         
-        let questionStep = ORKQuestionStep(identifier: questionStepDescriptor.identifier, title: questionStepDescriptor.title, text: questionStepDescriptor.text, answer: answerFormat)
+        let questionStep = ORKQuestionStep(
+            identifier: questionStepDescriptor.identifier,
+            title: helper.localizationHelper.localizedString(questionStepDescriptor.title),
+            text: helper.localizationHelper.localizedString(questionStepDescriptor.text),
+            answer: answerFormat
+        )
         
         questionStep.isOptional = questionStepDescriptor.optional
         return questionStep

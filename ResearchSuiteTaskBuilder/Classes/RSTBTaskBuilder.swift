@@ -36,6 +36,7 @@ open class RSTBTaskBuilder {
     
     public init(
         stateHelper:RSTBStateHelper?,
+        localizationHelper: RSTBLocalizationHelper?,
         elementGeneratorServices: [RSTBElementGenerator]?,
         stepGeneratorServices: [RSTBStepGenerator]?,
         answerFormatGeneratorServices: [RSTBAnswerFormatGenerator]?,
@@ -44,7 +45,7 @@ open class RSTBTaskBuilder {
         consentSectionGeneratorServices: [RSTBConsentSectionGenerator.Type]? = nil,
         consentSignatureGeneratorServices: [RSTBConsentSignatureGenerator.Type]? = nil
         ) {
-        self._helper = RSTBTaskBuilderHelper(builder: self, stateHelper: stateHelper)
+        self._helper = RSTBTaskBuilderHelper(builder: self, stateHelper: stateHelper, localizationHelper: localizationHelper)
         
         if let _services = stepGeneratorServices {
             self.stepGeneratorService = RSTBStepGeneratorService(services: _services)

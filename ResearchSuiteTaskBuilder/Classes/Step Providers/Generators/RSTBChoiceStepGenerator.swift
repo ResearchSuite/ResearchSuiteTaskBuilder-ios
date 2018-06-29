@@ -24,7 +24,7 @@ open class RSTBChoiceStepGenerator: RSTBQuestionStepGenerator {
         }
     }
     
-    open func generateChoices(items: [RSTBChoiceItemDescriptor], valueSuffix: String?, shouldShuffle: Bool?) -> [ORKTextChoice] {
+    open func generateChoices(items: [RSTBChoiceItemDescriptor], valueSuffix: String?, shouldShuffle: Bool?, helper: RSTBTaskBuilderHelper) -> [ORKTextChoice] {
         
         let shuffledItems = items.shuffled(shouldShuffle: shouldShuffle ?? false)
         
@@ -39,10 +39,11 @@ open class RSTBChoiceStepGenerator: RSTBQuestionStepGenerator {
                     return item.value
                 }
             }) ()
-            
+
             return ORKTextChoice(
-                text: item.text,
-                detailText: item.detailText,
+//                text: NSLocalizedString(item.text, comment: ""),
+                text: helper.localizationHelper.localizedString(item.text),
+                detailText: helper.localizationHelper.localizedString(item.detailText),
                 value: value,
                 exclusive: item.exclusive)
         }
@@ -64,7 +65,12 @@ open class RSTBChoiceStepGenerator: RSTBQuestionStepGenerator {
             
         }()
         
-        let choices = self.generateChoices(items: filteredItems, valueSuffix: choiceStepDescriptor.valueSuffix, shouldShuffle: choiceStepDescriptor.shuffleItems)
+        let choices = self.generateChoices(
+            items: filteredItems,
+            valueSuffix: choiceStepDescriptor.valueSuffix,
+            shouldShuffle: choiceStepDescriptor.shuffleItems,
+            helper: helper
+        )
         
         guard choices.count > 0 else {
             return nil

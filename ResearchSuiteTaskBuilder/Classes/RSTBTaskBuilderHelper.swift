@@ -19,10 +19,13 @@ open class RSTBTaskBuilderHelper: NSObject {
         return self._builder
     }
     
-    public init(builder: RSTBTaskBuilder, stateHelper: RSTBStateHelper?) {
+    open let localizationHelper: RSTBLocalizationHelper
+    
+    public init(builder: RSTBTaskBuilder, stateHelper: RSTBStateHelper?, localizationHelper: RSTBLocalizationHelper?) {
         
         self._builder = builder
         self._stateHelper = stateHelper
+        self.localizationHelper = localizationHelper ?? RSTBLocalizationHelper()
         super.init()
         
     }
