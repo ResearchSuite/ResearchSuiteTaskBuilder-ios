@@ -28,8 +28,8 @@ open class RSTBCountdownStepGenerator: RSTBBaseStepGenerator {
         if let duration: TimeInterval = "duration" <~~ jsonObject {
             step.stepDuration = duration
         }
-        step.title = stepDescriptor.title
-        step.text = stepDescriptor.text
+        step.title = helper.localizationHelper.localizedString(stepDescriptor.title)
+        step.text = helper.localizationHelper.localizedString(stepDescriptor.text)
         step.isOptional = stepDescriptor.optional
         
         return step

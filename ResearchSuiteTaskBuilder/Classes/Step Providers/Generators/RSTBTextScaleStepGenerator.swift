@@ -16,15 +16,16 @@ open class RSTBTextScaleStepGenerator: RSTBQuestionStepGenerator {
         return ["textScale"]
     }
 
-    open func generateChoices(items: [RSTBChoiceItemDescriptor]) -> [ORKTextChoice] {
+    open func generateChoices(items: [RSTBChoiceItemDescriptor], helper: RSTBTaskBuilderHelper) -> [ORKTextChoice] {
         
         return items.map { item in
         
             return ORKTextChoice(
-                text: item.text,
-                detailText: item.detailText,
+                text: helper.localizationHelper.localizedString(item.text),
+                detailText: helper.localizationHelper.localizedString(item.detailText),
                 value: item.value,
-                exclusive: item.exclusive)
+                exclusive: item.exclusive
+            )
         }
     }
     
@@ -33,7 +34,7 @@ open class RSTBTextScaleStepGenerator: RSTBQuestionStepGenerator {
             return nil
         }
         
-        let choices = self.generateChoices(items: stepDescriptor.items)
+        let choices = self.generateChoices(items: stepDescriptor.items, helper: helper)
         
         guard choices.count > 0 else {
             return nil

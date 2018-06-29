@@ -23,15 +23,26 @@ open class RSTBTextFieldStepGenerator: RSTBQuestionStepGenerator {
             return nil
         }
         
-        let answerFormat: ORKTextAnswerFormat = {
+        let answerFormatOpt: ORKTextAnswerFormat? = {
             if let validationRegex = textFieldDescriptor.validationRegex {
-                return ORKTextAnswerFormat(validationRegex: validationRegex, invalidMessage: textFieldDescriptor.invalidMessage ?? "Entry invalid")
+                let invalidMessage: String = helper.localizationHelper.localizedString(textFieldDescriptor.invalidMessage)
+                    ?? helper.localizationHelper.localizedString("Entry invalid")
+                
+                guard let regexp = try? NSRegularExpression(pattern: validationRegex) else {
+                    return nil
+                }
+                let answerFormat = ORKTextAnswerFormat(validationRegularExpression: regexp, invalidMessage: invalidMessage)
+                return answerFormat
             }
             else {
                 return ORKTextAnswerFormat(maximumLength: textFieldDescriptor.maximumLength ?? 0)
             }
             
         } ()
+        
+        guard let answerFormat = answerFormatOpt else {
+            return nil
+        }
         
         answerFormat.multipleLines = textFieldDescriptor.multipleLines
         

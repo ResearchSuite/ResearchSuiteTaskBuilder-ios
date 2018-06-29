@@ -46,8 +46,8 @@ open class RSTBMultipleValuePickerChoiceStepGenerator: RSTBQuestionStepGenerator
         }
     }
     
-    open func generateChoices(items: [RSTBChoiceItemDescriptor], shouldShuffle: Bool?) -> [ORKTextChoice] {
-        return RSTBValuePickerChoiceStepGenerator.generateChoices(items: items, shouldShuffle: shouldShuffle)
+    open func generateChoices(items: [RSTBChoiceItemDescriptor], shouldShuffle: Bool?, helper: RSTBTaskBuilderHelper) -> [ORKTextChoice] {
+        return RSTBValuePickerChoiceStepGenerator.generateChoices(items: items, shouldShuffle: shouldShuffle, helper: helper)
     }
     
     override open func generateAnswerFormat(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKAnswerFormat? {
@@ -67,7 +67,7 @@ open class RSTBMultipleValuePickerChoiceStepGenerator: RSTBQuestionStepGenerator
         
         let shuffledGroups = filteredGroups.shuffled(shouldShuffle: choiceStepDescriptor.shuffleGroups)
         
-        let valuePickers: [ORKValuePickerAnswerFormat] = shuffledGroups.flatMap { group in
+        let valuePickers: [ORKValuePickerAnswerFormat] = shuffledGroups.compactMap { group in
             
             let filteredItems: [RSTBChoiceItemDescriptor] = {
                 
@@ -80,7 +80,7 @@ open class RSTBMultipleValuePickerChoiceStepGenerator: RSTBQuestionStepGenerator
                 
             }()
             
-            let choices = self.generateChoices(items: filteredItems, shouldShuffle: group.shuffleItems)
+            let choices = self.generateChoices(items: filteredItems, shouldShuffle: group.shuffleItems, helper: helper)
             
             guard choices.count > 0 else {
                 return nil

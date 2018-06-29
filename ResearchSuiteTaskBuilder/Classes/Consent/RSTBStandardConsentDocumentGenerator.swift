@@ -23,7 +23,7 @@ open class RSTBStandardConsentDocument: ORKConsentDocument, RSTBConsentDocumentG
                 return nil
         }
         
-        let sections:[ORKConsentSection] = descriptor.sections.flatMap { sectionJSON in
+        let sections:[ORKConsentSection] = descriptor.sections.compactMap { sectionJSON in
             
             guard let type: String = "type" <~~ sectionJSON else {
                 return nil
@@ -33,7 +33,7 @@ open class RSTBStandardConsentDocument: ORKConsentDocument, RSTBConsentDocumentG
             
         }
         
-        let signatures: [ORKConsentSignature] = descriptor.signatures.flatMap { signatureJSON in
+        let signatures: [ORKConsentSignature] = descriptor.signatures.compactMap { signatureJSON in
             guard let type: String = "type" <~~ signatureJSON else {
                 return nil
             }
@@ -42,7 +42,7 @@ open class RSTBStandardConsentDocument: ORKConsentDocument, RSTBConsentDocumentG
         }
         
         return RSTBStandardConsentDocument(
-            title: descriptor.title,
+            title: helper.localizationHelper.localizedString(descriptor.title),
             sections: sections,
             signatures: signatures
         )

@@ -17,20 +17,20 @@ open class RSTBInvestigatorConsentSignatureGenerator: RSTBConsentSignatureGenera
     
     open class func generate(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKConsentSignature? {
         
-        guard let desciptor = RSTBConsentSignatureDescriptor(json: jsonObject) else {
+        guard let descriptor = RSTBConsentSignatureDescriptor(json: jsonObject) else {
             return nil
         }
         
-        let image: UIImage? = (desciptor.signatureImageTitle != nil) ? UIImage(named: desciptor.signatureImageTitle!) : nil
+        let image: UIImage? = (descriptor.signatureImageTitle != nil) ? UIImage(named: descriptor.signatureImageTitle!) : nil
         
         return ORKConsentSignature(
-            forPersonWithTitle: desciptor.title,
-            dateFormatString: desciptor.dateFormatString,
-            identifier: desciptor.identifier,
-            givenName: desciptor.givenName,
-            familyName: desciptor.familyName,
+            forPersonWithTitle: descriptor.title,
+            dateFormatString: descriptor.dateFormatString,
+            identifier: descriptor.identifier,
+            givenName: descriptor.givenName,
+            familyName: descriptor.familyName,
             signatureImage: image,
-            dateString: desciptor.signatureDateString
+            dateString: descriptor.signatureDateString
         )
     }
 }

@@ -26,20 +26,20 @@ open class RSTBValuePickerChoiceStepGenerator: RSTBQuestionStepGenerator {
         }
     }
     
-    open class func generateChoices(items: [RSTBChoiceItemDescriptor], shouldShuffle: Bool?) -> [ORKTextChoice] {
+    open class func generateChoices(items: [RSTBChoiceItemDescriptor], shouldShuffle: Bool?, helper: RSTBTaskBuilderHelper) -> [ORKTextChoice] {
         let shuffledItems = items.shuffled(shouldShuffle: shouldShuffle ?? false)
         
         return shuffledItems.map { item in
             return ORKTextChoice(
-                text: item.text,
-                detailText: item.detailText,
+                text: helper.localizationHelper.localizedString(item.text),
+                detailText: helper.localizationHelper.localizedString(item.detailText),
                 value: item.value,
                 exclusive: item.exclusive)
         }
     }
     
-    open func generateChoices(items: [RSTBChoiceItemDescriptor], shouldShuffle: Bool?) -> [ORKTextChoice] {
-        return RSTBValuePickerChoiceStepGenerator.generateChoices(items: items, shouldShuffle: shouldShuffle)
+    open func generateChoices(items: [RSTBChoiceItemDescriptor], shouldShuffle: Bool?, helper: RSTBTaskBuilderHelper) -> [ORKTextChoice] {
+        return RSTBValuePickerChoiceStepGenerator.generateChoices(items: items, shouldShuffle: shouldShuffle, helper: helper)
     }
     
     override open func generateAnswerFormat(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKAnswerFormat? {
@@ -58,7 +58,7 @@ open class RSTBValuePickerChoiceStepGenerator: RSTBQuestionStepGenerator {
             
         }()
         
-        let choices = self.generateChoices(items: filteredItems, shouldShuffle: choiceStepDescriptor.shuffleItems)
+        let choices = self.generateChoices(items: filteredItems, shouldShuffle: choiceStepDescriptor.shuffleItems, helper: helper)
         
         guard choices.count > 0 else {
             return nil

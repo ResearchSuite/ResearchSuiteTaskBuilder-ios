@@ -30,8 +30,8 @@ open class RSTBScaleStepGenerator: RSTBQuestionStepGenerator {
             defaultValue: scaleDescriptor.defaultValue,
             step: scaleDescriptor.stepValue,
             vertical: scaleDescriptor.vertical,
-            maximumValueDescription: scaleDescriptor.maximumDescription,
-            minimumValueDescription: scaleDescriptor.minimumDescription
+            maximumValueDescription:  helper.localizationHelper.localizedString(scaleDescriptor.maximumDescription),
+            minimumValueDescription:  helper.localizationHelper.localizedString(scaleDescriptor.minimumDescription)
         )
     }
     

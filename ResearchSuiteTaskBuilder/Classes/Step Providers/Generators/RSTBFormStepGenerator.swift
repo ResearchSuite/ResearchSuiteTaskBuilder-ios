@@ -26,7 +26,7 @@ open class RSTBFormStepGenerator: RSTBBaseStepGenerator {
         
         
         //generate form items from question step descriptors
-        let formItems = formStepDescriptor.items.flatMap { (itemJson) -> ORKFormItem? in
+        let formItems = formStepDescriptor.items.compactMap { (itemJson) -> ORKFormItem? in
             
             guard let stepDescriptor = RSTBStepDescriptor(json: itemJson) else {
                 return nil
@@ -34,15 +34,25 @@ open class RSTBFormStepGenerator: RSTBBaseStepGenerator {
             
             switch (stepDescriptor.type) {
             case "sectionTitle":
-                return ORKFormItem(sectionTitle: stepDescriptor.title)
+                return ORKFormItem(sectionTitle: helper.localizationHelper.localizedString(stepDescriptor.title))
             default:
                 let answerFormat = builder.generateAnswerFormat(type: stepDescriptor.type, jsonObject: itemJson, helper: helper)
-                return ORKFormItem(identifier: stepDescriptor.identifier, text: stepDescriptor.text, answerFormat: answerFormat, optional: stepDescriptor.optional)
+                return ORKFormItem(
+                    identifier: stepDescriptor.identifier,
+                    text: helper.localizationHelper.localizedString(stepDescriptor.text),
+                    answerFormat: answerFormat,
+                    optional: stepDescriptor.optional
+                )
             }
             
         }
         
-        let formStep = ORKFormStep(identifier: formStepDescriptor.identifier, title: formStepDescriptor.title, text: formStepDescriptor.text)
+        let formStep = ORKFormStep(
+            identifier: formStepDescriptor.identifier,
+            title: helper.localizationHelper.localizedString(formStepDescriptor.title),
+            text: helper.localizationHelper.localizedString(formStepDescriptor.text)
+        )
+        
         formStep.isOptional = formStepDescriptor.optional
         formStep.formItems = formItems
         return formStep

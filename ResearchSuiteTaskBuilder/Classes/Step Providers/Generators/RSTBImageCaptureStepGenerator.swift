@@ -25,8 +25,8 @@ open class RSTBImageCaptureStepGenerator: RSTBBaseStepGenerator {
         
         let step =
             ORKImageCaptureStep(identifier: stepDescriptor.identifier)
-        step.title = stepDescriptor.title
-        step.text = stepDescriptor.text
+        step.title = helper.localizationHelper.localizedString(stepDescriptor.title)
+        step.text = helper.localizationHelper.localizedString(stepDescriptor.text)
         step.isOptional = stepDescriptor.optional
         
         
