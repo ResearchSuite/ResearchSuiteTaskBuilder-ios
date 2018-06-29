@@ -48,7 +48,7 @@ open class RSTBLocalizationHelper: NSObject {
         super.init()
     }
     
-    func localizedString(_ string: String) -> String {
+    open func localizedString(_ string: String) -> String {
         
         if let languageString = self.languageMap?[string] {
             return languageString
@@ -61,7 +61,7 @@ open class RSTBLocalizationHelper: NSObject {
         return NSLocalizedString(string, comment: "")
     }
     
-    func localizedString(_ string: String?) -> String? {
+    open func localizedString(_ string: String?) -> String? {
         guard let string = string else {
             return nil
         }
