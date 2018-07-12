@@ -29,6 +29,8 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/ResearchSuite/ResearchSuiteTaskBuilder-ios.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
+  s.swift_version = '4.1'
+
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'ResearchSuiteTaskBuilder/Classes/**/*'
