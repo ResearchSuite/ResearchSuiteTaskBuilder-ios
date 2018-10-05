@@ -18,7 +18,17 @@ open class RSTBDatePickerStepGenerator: RSTBQuestionStepGenerator {
     }
     
     override open func generateAnswerFormat(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKAnswerFormat? {
-        return ORKAnswerFormat.dateAnswerFormat()
+        
+        guard let stepDescriptor = RSTBDateTimePickerStepDescriptor(json: jsonObject) else {
+            return nil
+        }
+        
+        return ORKAnswerFormat.dateAnswerFormat(
+            withDefaultDate: stepDescriptor.defaultDate,
+            minimumDate: stepDescriptor.minimumDate,
+            maximumDate: stepDescriptor.maximumDate,
+            calendar: nil
+        )
     }
     
     open override func processQuestionResult(type: String, result: ORKQuestionResult, helper: RSTBTaskBuilderHelper) -> JSON? {

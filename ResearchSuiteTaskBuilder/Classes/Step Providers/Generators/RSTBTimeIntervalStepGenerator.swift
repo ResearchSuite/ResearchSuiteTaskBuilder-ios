@@ -18,7 +18,15 @@ open class RSTBTimeIntervalStepGenerator: RSTBQuestionStepGenerator {
     }
     
     override open func generateAnswerFormat(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKAnswerFormat? {
-        return ORKAnswerFormat.timeIntervalAnswerFormat(withDefaultInterval: 0, step: 1)
+        
+        guard let stepDescriptor = RSTBTimeIntervalStepDescriptor(json: jsonObject) else {
+            return nil
+        }
+        
+        return ORKAnswerFormat.timeIntervalAnswerFormat(
+            withDefaultInterval: stepDescriptor.defaultInterval,
+            step: stepDescriptor.stepMins
+        )
     }
     
     open override func processQuestionResult(type: String, result: ORKQuestionResult, helper: RSTBTaskBuilderHelper) -> JSON? {

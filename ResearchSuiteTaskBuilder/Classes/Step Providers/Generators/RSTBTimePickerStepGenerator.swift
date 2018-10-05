@@ -18,7 +18,12 @@ open class RSTBTimePickerStepGenerator: RSTBQuestionStepGenerator {
     }
     
     override open func generateAnswerFormat(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKAnswerFormat? {
-        return ORKAnswerFormat.timeOfDayAnswerFormat()
+        
+        guard let stepDescriptor = RSTBTimePickerStepDescriptor(json: jsonObject) else {
+            return nil
+        }
+        
+        return ORKAnswerFormat.timeOfDayAnswerFormat(withDefaultComponents: stepDescriptor.defaultComponents)
     }
     
     open override func processQuestionResult(type: String, result: ORKQuestionResult, helper: RSTBTaskBuilderHelper) -> JSON? {
