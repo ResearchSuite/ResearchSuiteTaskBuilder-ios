@@ -17,7 +17,15 @@ open class RSTBBooleanStepGenerator: RSTBQuestionStepGenerator {
     }
     
     override open func generateAnswerFormat(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKAnswerFormat? {
-        return ORKAnswerFormat.booleanAnswerFormat()
+        
+        guard let descriptor = RSTBBooleanStepDescriptor(json: jsonObject) else {
+            return nil
+        }
+        
+        let yesString = descriptor.yesString ?? "Yes"
+        let noString = descriptor.noString ?? "No"
+        
+        return ORKAnswerFormat.booleanAnswerFormat(withYesString: yesString, noString: noString)
     }
     
     open override func processQuestionResult(type: String, result: ORKQuestionResult, helper: RSTBTaskBuilderHelper) -> JSON? {
