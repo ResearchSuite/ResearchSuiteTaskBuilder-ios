@@ -22,8 +22,8 @@ open class RSTBBooleanStepGenerator: RSTBQuestionStepGenerator {
             return nil
         }
         
-        let yesString = descriptor.yesString ?? "Yes"
-        let noString = descriptor.noString ?? "No"
+        let yesString = helper.localizationHelper.localizedString(descriptor.yesString ?? "Yes")
+        let noString = helper.localizationHelper.localizedString(descriptor.noString ?? "No")
         
         return ORKAnswerFormat.booleanAnswerFormat(withYesString: yesString, noString: noString)
     }
