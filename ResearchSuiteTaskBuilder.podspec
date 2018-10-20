@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ResearchSuiteTaskBuilder'
-  s.version          = '0.12.1'
+  s.version          = '0.13.0'
   s.summary          = 'The ResearchSuite Task Builder is an easy and extensible way to create Tasks for ResearchKit.'
 
 # This description is used to generate tags and improve search results.
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/ResearchSuite/ResearchSuiteTaskBuilder-ios.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.swift_version = '4.1'
+  s.swift_version = '4.2'
 
   s.ios.deployment_target = '9.0'
 
