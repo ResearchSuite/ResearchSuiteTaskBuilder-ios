@@ -35,6 +35,7 @@ open class RSTBQuestionStepGenerator: RSTBBaseStepGenerator, RSTBAnswerFormatGen
         )
         
         questionStep.isOptional = questionStepDescriptor.optional
+        questionStep.placeholder = questionStepDescriptor.placeholder
         return questionStep
     }
     
